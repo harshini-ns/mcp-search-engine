@@ -1,6 +1,10 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
+import fetch from 'node-fetch';
+import dotenv from "dotenv";
+dotenv.config();
+
 
 // --- Server Initialization ---
 const server = new McpServer({
@@ -33,6 +37,57 @@ function calculateFactorial(n: number): number {
 }
 
 // --- Tool Definitions ---
+server.tool(
+    "search_engine",
+    "Performs a search using TheCodeRunners search engine and returns the results.",
+    {
+        query: z.string().min(1, "Query must be a non-empty string").describe("The search query string."),
+    },
+    async ({ query }) => {
+        try {
+            const authHeader = process.env.AUTH_HEADER;
+            if (!authHeader) {
+                throw new Error("Missing AUTH_HEADER environment variable.");
+            }
+
+            const urlencoded = new URLSearchParams();
+            urlencoded.append("format", "json");
+            urlencoded.append("q", query);
+
+            const response = await fetch("https://search.thecoderunners.com/search", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': authHeader,
+                },
+                body: urlencoded,
+            });
+
+            if (!response.ok) {
+                throw new Error(`Network error: ${response.statusText}`);
+            }
+
+            const searchResults = await response.json();
+
+            // Format response
+            return {
+                content: [{
+                    type: "text",
+                    text: JSON.stringify(searchResults, null, 2)
+                }]
+            };
+        } catch (error) {
+            const message = error instanceof Error
+                ? error.message
+                : "An unknown error occurred during search.";
+            return {
+                content: [{ type: "text", text: `Error: ${message}` }],
+                isError: true,
+            };
+        }
+    }
+);
 
 
 
