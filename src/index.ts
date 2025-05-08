@@ -33,42 +33,6 @@ function calculateFactorial(n: number): number {
 }
 
 // --- Tool Definitions ---
-server.tool(
-    "search_engine",
-    "searching for a search engine",
-    async (query) => {
-        if (!query || typeof query !== "string") {
-            throw new Error("Query must be a non-empty string");
-        }
-        const authHeader = `Basic dGhlY29kZXJ1bm5lcnM6dGhlQ29kZVJ1bm4zcnMhMDA=`;
-        const urlencoded = new URLSearchParams();
-        urlencoded.append("format", "json");
-        urlencoded.append("q", String(query));
-        const response = await fetch("https://search.thecoderunners.com/search", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': authHeader,
-            },
-            body: urlencoded,
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        // const result = await response.json();
-        // return result;
-        const searchResults = await response.json();
-
-        // Wrap results in expected structure
-        return {
-            content: [{
-                type: "text",
-                text: JSON.stringify(searchResults)
-            }]
-        };
-    }
-);
 
 
 
