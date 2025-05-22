@@ -95,6 +95,3 @@ This server communicates using the MCP stdio transport. To connect it to Claude 
 
 Claude for Desktop should now show the MCP tools icon (a hammer icon then, now its a settings slider/tune icon) and be able to use the calculator tools when you ask it to perform calculations or to use search engine.
 
-## License
-
-MIT License
