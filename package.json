@@ -2,15 +2,15 @@
     "name": "calculator-mcp-server",
     "version": "1.0.0",
     "description": "A comprehensive calculator MCP server using TypeScript.",
-    "main": "build/index.js",
+    "main": "index.js",
     "type": "module",
     "bin": {
-        "calculator-mcp-server": "./build/index.js"
+        "calculator-mcp-server": "index.js"
     },
     "scripts": {
         "test": "vitest",
-        "build": "tsc && chmod 755 build/index.js",
-        "start": "node build/index.js"
+        "build": "tsc && chmod 755 index.js",
+        "start": "node index.js"
     },
     "files": [
         "build"
