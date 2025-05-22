@@ -1,4 +1,4 @@
-# Calculator and search engine MCP Server
+# Calculator and Search Engine MCP Server
 
 A comprehensive calculator and search engine implemented as a Model Context Protocol (MCP) server using TypeScript.
 
