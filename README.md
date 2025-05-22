@@ -77,7 +77,6 @@ This server communicates using the MCP stdio transport. To connect it to Claude 
           "args": [
             "/home/marco/code/calculator-mcp-server/index.js"
             // IMPORTANT: Replace this path with the ACTUAL ABSOLUTE PATH
-            // to the 'build/index.js' file on YOUR system.
           ]
         }
         // You can add other servers here under different keys, like:
