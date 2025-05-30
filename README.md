@@ -94,10 +94,10 @@ This server communicates using the MCP stdio transport. To connect it to Claude 
 
 Claude for Desktop should now show the MCP tools icon (a hammer icon then, now its a settings slider/tune icon) and be able to use the calculator tools when you ask it to perform calculations or to use search engine.
 
-##Read the Blog for this Repo:
+## Read the Blog for this Repo:
 https://medium.com/@harshininaveen9801/building-on-an-mcp-server-adding-a-custom-search-tool-to-a-github-project-52acb0ee0aff
 
-##Watch the Recorded Demo Video:
+## Watch the Recorded Demo Video:
 https://youtu.be/h0jKkmJLHlE
 
 
